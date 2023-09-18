@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmation Page</title>
+    <link rel="stylesheet" type="text/css" href="Assignment3.css">
+</head>
+<body>
+    <h1>Confirmation Page</h1>
+    <p>Please review your information:</p>
+    
+    <!-- Display user's information here -->
+    <ul>
+        <li><strong>Name:</strong> <span id="name"></span></li>
+        <li><strong>Address:</strong> <span id="address"></span></li>
+        <li><strong>City:</strong> <span id="city"></span></li>
+        <li><strong>State:</strong> <span id="state"></span></li>
+        <li><strong>Zip Code:</strong> <span id="zip"></span></li>
+        <li><strong>Phone Number:</strong> <span id="phone"></span></li>
+        <li><strong>Email Address:</strong> <span id="email"></span></li>
+        <li><strong>Birth Date:</strong> <span id="birthdate"></span></li>
+        <li><strong>Message:</strong> <span id="message"></span></li>
+    </ul>
+    
+    <!-- Add a back button if the user wants to edit the information -->
+    <form action="Assignment3.html">
+        <button type="submit">Edit Information</button>
+    </form>
+
+    <!-- Add a "Submit" button that opens the default email client -->
+    <button id="submitBtn">Submit</button>
+
+    <script>
+        // Function to extract URL parameters
+        function getURLParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        // Populate the HTML elements with the user's data
+        document.getElementById("name").textContent = getURLParameter("name");
+        document.getElementById("address").textContent = getURLParameter("address");
+        document.getElementById("city").textContent = getURLParameter("city");
+        document.getElementById("state").textContent = getURLParameter("state");
+        document.getElementById("zip").textContent = getURLParameter("zip");
+        document.getElementById("phone").textContent = getURLParameter("phone");
+        document.getElementById("email").textContent = getURLParameter("email");
+        document.getElementById("birthdate").textContent = getURLParameter("birthdate");
+        document.getElementById("message").textContent = getURLParameter("message");
+
+        // Handle the "Submit" button click event
+        document.getElementById("submitBtn").addEventListener("click", function () {
+            var subject = "Form Submission";
+            var body = "Here is the information I entered:\n\n";
+            body += "Name: " + getURLParameter("name") + "\n";
+            body += "Address: " + getURLParameter("address") + "\n";
+            body += "City: " + getURLParameter("city") + "\n";
+            body += "State: " + getURLParameter("state") + "\n";
+            body += "Zip Code: " + getURLParameter("zip") + "\n";
+            body += "Phone Number: " + getURLParameter("phone") + "\n";
+            body += "Email Address: " + getURLParameter("email") + "\n";
+            body += "Birth Date: " + getURLParameter("birthdate") + "\n";
+            body += "Message: " + getURLParameter("message") + "\n";
+
+            var mailtoLink = "mailto:your-email@example.com";
+            mailtoLink += "?subject=" + encodeURIComponent(subject);
+            mailtoLink += "&body=" + encodeURIComponent(body);
+
+            // Open the default email client with the mailto link
+            window.location.href = mailtoLink;
+        });
+    </script>
+</body>
+</html>

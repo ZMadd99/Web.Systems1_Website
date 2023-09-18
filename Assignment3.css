@@ -1,0 +1,92 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f7ff; /* Light blue background */
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    color: #007bff; /* Blue heading text color */
+}
+
+/* Form styles */
+form {
+    background-color: #ffffff; /* White background for the form */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333; /* Dark gray label text color */
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button[type="submit"] {
+    background-color: #007bff; /* Blue submit button background */
+    color: #fff; /* White button text color */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+button#submitBtn {
+    background-color: #007bff; /* Blue button background */
+    color: #fff; /* White button text color */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-right: 10px; /* Add margin to match the "Edit Information" button */
+    
+    /* Add a white box shadow to create the effect */
+    box-shadow: 0px 0px 10px 0px #fff;
+}
+
+button#submitBtn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Confirmation page styles */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+/* Back button and submit button styles */
+form button {
+    background-color: #007bff; /* Blue button background */
+    color: #fff; /* White button text color */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+form button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
