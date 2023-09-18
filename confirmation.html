@@ -23,12 +23,10 @@
         <li><strong>Message:</strong> <span id="message"></span></li>
     </ul>
     
-    <!-- Add a back button if the user wants to edit the information -->
     <form action="Assignment3.html">
         <button type="submit">Edit Information</button>
     </form>
 
-    <!-- Add a "Submit" button that opens the default email client -->
     <button id="submitBtn">Submit</button>
 
     <script>
@@ -63,11 +61,11 @@
             body += "Birth Date: " + getURLParameter("birthdate") + "\n";
             body += "Message: " + getURLParameter("message") + "\n";
 
-            var mailtoLink = "mailto:your-email@example.com";
+            var mailtoLink = "mailto:zacharymaddox1999@gmail.com";
             mailtoLink += "?subject=" + encodeURIComponent(subject);
             mailtoLink += "&body=" + encodeURIComponent(body);
 
-            // Open the default email client with the mailto link
+        
             window.location.href = mailtoLink;
         });
     </script>
