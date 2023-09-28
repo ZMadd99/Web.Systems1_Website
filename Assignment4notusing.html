@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exponential Growth Calculator</title>
+</head>
+<body>
+  <div>
+    <label for="initial-value">Initial Value (A):</label>
+    <input type="number" id="initial-value" value="1">
+  </div>
+  <div>
+    <label for="growth-rate">Growth Rate (B):</label>
+    <input type="number" id="growth-rate" value="1">
+  </div>
+  <div>
+    <label for="x-start">X Start:</label>
+    <input type="number" id="x-start" value="1">
+  </div>
+  <div>
+    <label for="x-end">X End:</label>
+    <input type="number" id="x-end" value="2">
+  </div>
+  <button id="calculate">Calculate and Plot</button>
+  <div id="plot-container">
+    <h2>Plot</h2>
+    <div id="plot"></div>
+  </div>
+  <div id="results">
+    <h2>Calculated Results</h2>
+    <p id="result-equation"></p>
+    <p id="result-x-start"></p>
+    <p id="result-x-end"></p>
+    <p id="result-values"></p>
+  </div>
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="Assignment4notusing.js"></script>
+</body>
+</html>
+
