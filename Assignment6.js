@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 row.innerHTML = `
                     <td>${player.playerName}</td>
                     <td>${player.season}</td>
-                    <td>${player.scoring.map(score => `${score.game}: ${score.score}`).join(', ')}</td>
+                    <td>${player.scoring.map(score => `${score.game}: ${score.time} :${score.score}`).join(', ')}</td>
                 `;
                 tableBody.appendChild(row);
             });
