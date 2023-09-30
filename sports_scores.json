@@ -1,0 +1,32 @@
+{
+    "players": [
+        {
+            "playerName": "Player 1",
+            "season": "2023",
+            "scoring": [
+                {
+                    "game": "Game 1",
+                    "score": 20
+                },
+                {
+                    "game": "Game 2",
+                    "score": 15
+                }
+            ]
+        },
+        {
+            "playerName": "Player 2",
+            "season": "2023",
+            "scoring": [
+                {
+                    "game": "Game 1",
+                    "score": 18
+                },
+                {
+                    "game": "Game 2",
+                    "score": 22
+                }
+            ]
+        }
+    ]
+}
