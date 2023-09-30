@@ -1,30 +1,40 @@
 {
     "players": [
         {
-            "playerName": "Player 1",
+            "playerName": "Rahemm Sterling",
             "season": "2023",
             "scoring": [
                 {
-                    "game": "Game 1",
-                    "score": 20
+                    "game": "Game 3",
+                    "time": "48th minute",
+                    "score": 1
                 },
                 {
-                    "game": "Game 2",
-                    "score": 15
+                    "game": "Game 3",
+                    "time": "70th minute",
+                    "score": 2
                 }
             ]
         },
         {
-            "playerName": "Player 2",
+            "playerName": "Nicolas Jackson",
+            "season": "2023",
+            "scoring": [
+                {
+                    "game": "Game 3",
+                    "time": "70th minute",
+                    "score": 1
+                }
+            ]
+        },
+        {
+            "playerName": "Axel Disasi",
             "season": "2023",
             "scoring": [
                 {
                     "game": "Game 1",
-                    "score": 18
-                },
-                {
-                    "game": "Game 2",
-                    "score": 22
+                    "time": "50th minute",
+                    "score": 1
                 }
             ]
         }
