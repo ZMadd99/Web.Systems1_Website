@@ -1,6 +1,17 @@
 {
     "players": [
         {
+            "playerName": "Axel Disasi",
+            "season": "2023",
+            "scoring": [
+                {
+                    "game": "Game 1",
+                    "time": "50th minute",
+                    "score": 1
+                }
+            ]
+        },
+        {
             "playerName": "Rahemm Sterling",
             "season": "2023",
             "scoring": [
@@ -23,18 +34,7 @@
                 {
                     "game": "Game 3",
                     "time": "70th minute",
-                    "score": 1
-                }
-            ]
-        },
-        {
-            "playerName": "Axel Disasi",
-            "season": "2023",
-            "scoring": [
-                {
-                    "game": "Game 1",
-                    "time": "50th minute",
-                    "score": 1
+                    "score": 3
                 }
             ]
         }
