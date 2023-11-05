@@ -64,10 +64,10 @@ ul li:hover ul li {
     ul li a {
         display: block;
         width: 100%;
-        padding: 50px;
+        padding: 5px;
         background-color: blue;
         color: white;
-        text-align: center;
+        text-align: bottom;
     }
 
     ul li ul li {
