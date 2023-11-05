@@ -49,6 +49,7 @@ ul li:hover ul li {
 }
 
 
+/* Responsive styles for mobile devices */
 @media (max-width: 768px) {
     ul {
         text-align: center;
@@ -58,6 +59,7 @@ ul li:hover ul li {
         float: none;
         width: 100%;
         display: block;
+        position: relative;
     }
 
     ul li a {
@@ -67,6 +69,19 @@ ul li:hover ul li {
         background-color: blue;
         color: white;
         text-align: center;
+    }
+
+    ul li ul {
+        display: none;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: blue;
+    }
+
+    ul li:hover ul {
+        display: block;
     }
 
     ul li ul li {
