@@ -1,17 +1,19 @@
-body{
+
+body {
     font-family: sans-serif;
     background-color: lightgrey;
     color: blue;
 }
 
-ul{
+/* Navigation menu styles */
+ul {
     margin: 0;
     padding: 0;
     list-style: none;
 }
 
-ul li{
-    float: Left;
+ul li {
+    float: left;
     width: 200px;
     height: 40px;
     background-color: blue;
@@ -21,24 +23,47 @@ ul li{
     font-size: 20px;
 }
 
-ul li a{
+ul li a {
     text-decoration: none;
     color: white;
-    display: block; 
+    display: block;
     transition: all .5s ease;
 }
 
-ul li a:hover{
+ul li a:hover {
     background-color: black;
     transform: translateY(0);
 }
 
-ul li ul li{
-    display: none; 
-    
+ul li ul li {
+    display: none;
 }
 
-ul li:hover ul li{
+ul li:hover ul li {
     display: block;
 }
 
+/* Content styles */
+.content {
+    padding: 20px;
+}
+
+/* Responsive styles for mobile devices */
+@media (max-width: 768px) {
+    ul li {
+        float: none;
+        width: 100%;
+    }
+    ul li a {
+        display: inline-block;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 10px;
+    }
+    ul li ul li {
+        display: none;
+    }
+    ul li:hover ul li {
+        display: block;
+    }
+}
