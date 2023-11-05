@@ -49,21 +49,33 @@ ul li:hover ul li {
 }
 
 /* Responsive styles for mobile devices */
+/* Responsive styles for mobile devices */
 @media (max-width: 768px) {
+    ul {
+        text-align: center;
+    }
+
     ul li {
         float: none;
         width: 100%;
-    }
-    ul li a {
-        display: inline-block;
-        width: 100%;
-        box-sizing: border-box;
-        padding: 10px;
-    }
-    ul li ul li {
-        display: none;
-    }
-    ul li:hover ul li {
         display: block;
     }
+
+    ul li a {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background-color: blue;
+        color: white;
+        text-align: center;
+    }
+
+    ul li ul li {
+        display: block;
+    }
+
+    ul li:hover ul li {
+        background-color: transparent;
+    }
 }
+
