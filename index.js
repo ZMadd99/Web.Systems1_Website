@@ -1,15 +1,12 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const mainMenuItems = document.querySelectorAll(".main-menu > li");
+    const menuToggle = document.getElementById("menu-toggle");
+    const menu = document.getElementById("menu");
     
-    mainMenuItems.forEach(item => {
-        const subMenu = item.querySelector(".sub-menu");
-        
-        item.addEventListener("click", function () {
-            if (subMenu.style.display === "block") {
-                subMenu.style.display = "none";
-            } else {
-                subMenu.style.display = "block";
-            }
-        });
+    menuToggle.addEventListener("change", function () {
+        if (menuToggle.checked) {
+            menu.style.display = "block";
+        } else {
+            menu.style.display = "none";
+        }
     });
 });
