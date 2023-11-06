@@ -65,3 +65,24 @@
 #menu ul li .submenu li a:hover {
     color: #66ccff;
 }
+
+/* Media query to adjust styles for mobile screens */
+@media (max-width: 900px) {
+    #menu-icon {
+        font-size: 900px; /* Adjust sthe hamburger button size */
+    }
+    #menu {
+        padding: 20px; /* Increase menu padding */
+    }
+    #menu ul li a {
+        font-size: 24px; /* Increase font size for menu items */
+        margin: 15px; /* Increase margin for menu items */
+    }
+    .submenu {
+        padding: 10px; /* Increase padding for submenus */
+    }
+    #menu ul li .submenu li a {
+        font-size: 20px; /* Increase font size for submenu items */
+        margin: 10px; /* Increase margin for submenu items */
+    }
+}
