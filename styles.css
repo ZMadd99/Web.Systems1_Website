@@ -13,9 +13,9 @@
     display: none;
     background-color: #333;
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 10%;
+    left: 55%;
+    transform: translate(0%, 0%);
     padding: 10px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -67,12 +67,12 @@
 }
 
 /* Media query to adjust styles for mobile screens */
-@media (max-width: 900px) {
+@media (max-width: 768px) {
     #menu-icon {
-        font-size: 900px; /* Adjust sthe hamburger button size */
+        font-size: 70px; /* Adjust sthe hamburger button size */
     }
     #menu {
-        padding: 20px; /* Increase menu padding */
+        padding: 10px; /* Increase menu padding */
     }
     #menu ul li a {
         font-size: 24px; /* Increase font size for menu items */
