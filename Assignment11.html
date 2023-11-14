@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Advising Tool</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        #completed-classes, #remaining-classes {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        select {
+            width: 200px;
+            padding: 5px;
+        }
+
+        button {
+            padding: 8px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Class Advising Tool</h1>
+
+    <label for="class-selector">Select Completed Classes:</label>
+    <select id="class-selector">
+        <option value="" disabled selected>Select a Class</option>
+        <!-- Options will be dynamically added here -->
+    </select>
+    <button onclick="addCompletedClass()">Add</button>
+
+    <div id="completed-classes">
+        <h2>Completed Classes</h2>
+        <ul id="completed-list"></ul>
+    </div>
+
+    <div id="remaining-classes">
+        <h2>Remaining Classes</h2>
+        <ul id="remaining-list"></ul>
+    </div>
+
+    <script>
+        // Define classes and their prerequisites
+        const classes = {
+            "MAC1105": { name: "College Algebra", prerequisites: [] },
+            "MAC1114": { name: "Trigonometry", prerequisites: ["MAC1105"] },
+            "MAC1140": { name: "PreCalculus", prerequisites: ["MAC1105"] },
+            "MAC2311": { name: "Calculus", prerequisites: ["MAC1140", "MAC1114"] },
+            "COT3100": { name: "Discrete Analaysis", prerequisites: ["MAC1105"] },
+            "COP1000": { name: "Principles of Programming", prerequisites: [] },
+            "COP2800": { name: "Java Programming", prerequisites: ["COP1000"] },
+            "CTS3348": { name: "Linux Administration", prerequisites: ["COP1000"] },
+            "CET3116": { name: "Digital Technology", prerequisites: ["MAC1105"] },
+            "EET3086": { name: "Electrical Circuits", prerequisites: ["MAC1114"] },
+            "ENC1101": { name: "Composition", prerequisites: [] },
+            "GEB3213": { name: "Business Writing", prerequisites: ["ENC1101"] },
+            "CIS4250": { name: "Ethics in Computing", prerequisites: ["GEB3213"] },
+            "COP3530": { name: "Data Structures", prerequisites: ["COT3100", "COP2800"] },
+            "CEN3722": { name: "Human Computer Interfaces", prerequisites: ["COP2800"] },
+            "COP4708": { name: "Applied Database", prerequisites: ["COP2800"] },
+            "COP4610": { name: "Operating Systems", prerequisites: ["CTS3348"] },
+            "CIS4360": { name: "Applied Cybersecurity", prerequisites: ["CTS3348"] },
+            "CNT3104": { name: "Introduction to Telecom", prerequisites: ["EET3086"] },
+            "CNT4007": { name: "Data Communications", prerequisites: ["CNT3104"] },
+            "CNT4703": { name: "Voice/Data Networks", prerequisites: ["CNT4007"] },
+            "CDA4101": { name: "Computer Organization and Design", prerequisites: ["CET3116"] },
+            "CEN4801": { name: "Systems Inegration", prerequisites: ["COP3530"] },
+            "CEN4010": { name: "Software Engineering", prerequisites: ["COP3530"] },
+            "COP4813": { name: "Web Systems I", prerequisites: ["COP3530"] },
+            "COP4709": { name: "Applied Database II", prerequisites: ["COP4708"] },
+            "COP4834": { name: "Web Systems II", prerequisites: ["COP4813", "COP4708"] },
+            "CIS4360": { name: "Project Management in IT", prerequisites: ["CEN4010"] },
+            "CET4884": { name: "Security Methods and Practices", prerequisites: ["CIS4360"] },
+            "CIS4360": { name: "Introdcution to Digital Forensics", prerequisites: ["CIS4360"] },
+            "CET4861": { name: "Advanced Digital Forensics", prerequisites: ["CET4860"] },
+            "CET4862": { name: "Network Forensics and Incident Response", prerequisites: ["CET4860"] },
+            
+
+            // Add more classes with prerequisites as needed
+        };
+
+        // Track completed and remaining classes
+        const completedClasses = [];
+        const remainingClasses = Object.keys(classes);
+
+        // Function to update class selector options based on completed classes
+        function updateClassSelectorOptions() {
+            const selector = document.getElementById("class-selector");
+            selector.innerHTML = "<option value='' disabled selected>Select a Class</option>";
+
+            for (const classKey of remainingClasses) {
+                const prerequisites = classes[classKey].prerequisites;
+
+                if (prerequisites.every(prerequisite => completedClasses.includes(prerequisite))) {
+                    const option = document.createElement("option");
+                    option.value = classKey;
+                    option.textContent = classes[classKey].name;
+                    selector.appendChild(option);
+                }
+            }
+        }
+
+        // Function to add completed class
+        function addCompletedClass() {
+            const selector = document.getElementById("class-selector");
+            const selectedClass = selector.value;
+
+            if (selectedClass) {
+                if (!completedClasses.includes(selectedClass)) {
+                    completedClasses.push(selectedClass);
+                    removeFromRemaining(selectedClass);
+                    updateLists();
+                    updateClassSelectorOptions();
+                }
+            }
+        }
+
+        // Function to check unmet prerequisites
+        function checkUnmetPrerequisites(classKey) {
+            const prerequisites = classes[classKey].prerequisites;
+            for (const prerequisite of prerequisites) {
+                if (!completedClasses.includes(prerequisite)) {
+                    return classes[prerequisite].name;
+                }
+            }
+            return null;
+        }
+
+        // Function to remove completed class from remaining
+        function removeFromRemaining(completedClass) {
+            const index = remainingClasses.indexOf(completedClass);
+            if (index !== -1) {
+                remainingClasses.splice(index, 1);
+            }
+            // Also remove from remaining list if prerequisites are fulfilled
+            classes[completedClass].prerequisites.forEach(prerequisite => {
+                removeFromRemaining(prerequisite);
+            });
+        }
+
+        // Function to update the displayed lists
+        function updateLists() {
+            const completedList = document.getElementById("completed-list");
+            const remainingList = document.getElementById("remaining-list");
+
+            completedList.innerHTML = "";
+            remainingList.innerHTML = "";
+
+            completedClasses.forEach(completedClass => {
+                const listItem = document.createElement("li");
+                listItem.textContent = classes[completedClass].name;
+                completedList.appendChild(listItem);
+            });
+
+            remainingClasses.forEach(remainingClass => {
+                const listItem = document.createElement("li");
+                listItem.textContent = classes[remainingClass].name;
+                remainingList.appendChild(listItem);
+            });
+        }
+
+        // Initial update
+        updateClassSelectorOptions();
+        updateLists();
+    </script>
+
+</body>
+</html>
