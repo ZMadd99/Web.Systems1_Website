@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+
+        canvas {
+            display: block;
+        }
+    </style>
+    <title>Space Dodge Game</title>
+</head>
+<body>
+
+<canvas id="gameCanvas"></canvas>
+
+<script>
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+
+    // Set canvas size
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    // Player
+    const player = {
+        x: canvas.width / 2,
+        y: canvas.height - 30,
+        width: 50,
+        height: 50,
+        color: 'blue',
+        speed: 5
+    };
+
+    // Asteroids
+    const asteroids = [];
+    const asteroidSpeed = 2;
+
+    // Crystals
+    const crystals = [];
+    const crystalSpeed = 2;
+
+    // Score
+    let score = 0;
+
+    function drawPlayer() {
+        ctx.fillStyle = player.color;
+        ctx.fillRect(player.x - player.width / 2, player.y - player.height / 2, player.width, player.height);
+    }
+
+    function drawAsteroids() {
+        for (const asteroid of asteroids) {
+            ctx.fillStyle = 'gray';
+            ctx.fillRect(asteroid.x - asteroid.width / 2, asteroid.y - asteroid.height / 2, asteroid.width, asteroid.height);
+        }
+    }
+
+    function drawCrystals() {
+        for (const crystal of crystals) {
+            ctx.fillStyle = 'yellow';
+            ctx.fillRect(crystal.x - crystal.width / 2, crystal.y - crystal.height / 2, crystal.width, crystal.height);
+        }
+    }
+
+    function drawScore() {
+        ctx.fillStyle = 'white';
+        ctx.font = '24px Arial';
+        ctx.fillText('Score: ' + score, 20, 30);
+    }
+
+    function update() {
+        // Move player
+        if (keys.right && player.x < canvas.width - player.width / 2) {
+            player.x += player.speed;
+        }
+        if (keys.left && player.x > player.width / 2) {
+            player.x -= player.speed;
+        }
+
+        // Move asteroids
+        for (const asteroid of asteroids) {
+            asteroid.y += asteroidSpeed;
+            // Check collision with player
+            if (
+                player.x - player.width / 2 < asteroid.x + asteroid.width / 2 &&
+                player.x + player.width / 2 > asteroid.x - asteroid.width / 2 &&
+                player.y - player.height / 2 < asteroid.y + asteroid.height / 2 &&
+                player.y + player.height / 2 > asteroid.y - asteroid.height / 2
+            ) {
+                alert('Game Over! Your score is ' + score);
+                location.reload(); // Reload the page to restart the game
+            }
+        }
+
+        // Move crystals
+        for (const crystal of crystals) {
+            crystal.y += crystalSpeed;
+            // Check collision with player
+            if (
+                player.x - player.width / 2 < crystal.x + crystal.width / 2 &&
+                player.x + player.width / 2 > crystal.x - crystal.width / 2 &&
+                player.y - player.height / 2 < crystal.y + crystal.height / 2 &&
+                player.y + player.height / 2 > crystal.y - crystal.height / 2
+            ) {
+                // Collect crystal and increase score
+                crystals.splice(crystals.indexOf(crystal), 1);
+                score++;
+            }
+        }
+
+        // Remove off-screen asteroids
+        asteroids.forEach((asteroid, index) => {
+            if (asteroid.y > canvas.height + asteroid.height / 2) {
+                asteroids.splice(index, 1);
+            }
+        });
+
+        // Remove off-screen crystals
+        crystals.forEach((crystal, index) => {
+            if (crystal.y > canvas.height + crystal.height / 2) {
+                crystals.splice(index, 1);
+            }
+        });
+
+        // Spawn asteroids randomly
+        if (Math.random() < 0.02) {
+            const asteroid = {
+                x: Math.random() * canvas.width,
+                y: -50,
+                width: 50,
+                height: 50
+            };
+            asteroids.push(asteroid);
+        }
+
+        // Spawn crystals randomly
+        if (Math.random() < 0.01) {
+            const crystal = {
+                x: Math.random() * canvas.width,
+                y: -50,
+                width: 30,
+                height: 30
+            };
+            crystals.push(crystal);
+        }
+    }
+
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawPlayer();
+        drawAsteroids();
+        drawCrystals();
+        drawScore();
+    }
+
+    function gameLoop() {
+        update();
+        draw();
+        requestAnimationFrame(gameLoop);
+    }
+
+    // Keyboard input
+    const keys = {
+        right: false,
+        left: false
+    };
+
+    window.addEventListener('keydown', (e) => {
+        if (e.code === 'ArrowRight') {
+            keys.right = true;
+        } else if (e.code === 'ArrowLeft') {
+            keys.left = true;
+        }
+    });
+
+    window.addEventListener('keyup', (e) => {
+        if (e.code === 'ArrowRight') {
+            keys.right = false;
+        } else if (e.code === 'ArrowLeft') {
+            keys.left = false;
+        }
+    });
+
+    gameLoop();
+</script>
+
+</body>
+</html>
